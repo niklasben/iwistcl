@@ -1,0 +1,71 @@
+<subcorpus id="20" authors="users" name="ICA-Lexikon" size="303">
+    <document doc_id="1" title="Startseite - Heimwerker-Lexikon">
+        <p>
+            <s>
+                Diese Pd-fpn- Diese LC.WF LC.FALSE SUBJ_EMB 3898635 2 NK PRO.Dem.Attr.Nom.Pl.Fem
+                Scheren Ncfpn Schere NULL NULL SUBJ_HD,SUBJ_EMB 3898635,3898635 3 SB N.Reg.Nom.Pl.Fem
+                besitzen Vmip3p- besitzen NULL NULL V_O_A 3898635 0 -- VFIN.Full.3.Pl.Pres.Ind
+                sehr R-- sehr NULL NULL OBJ_EMB 3898635 5 MO ADV
+                scharfe A-pfpn scharf NULL NULL OBJ_EMB 3898635 8 NK ADJA.Pos.Nom.Pl.Fem und Cc und NULL NULL OBJ_EMB 3898635 5 CD CONJ.Coord
+                robuste A-pfpn robust NULL NULL OBJ_EMB 3898635 6 CJ ADJA.Pos.Nom.Pl.Fem
+                Schneidflächen Ncfpn Schneidfläche NULL NULL OBJ_HD,OBJ_EMB 3898635,3898635 3 OA N.Reg.Nom.Pl.Fem
+                . S . NULL NULL NULL NULL 8 -- SYM.Pun.Sent
+            </s>
+            <s>
+                Sie Pp3-pn- sie NULL NULL OBJ_HD,OBJ_EMB 3898636,3898636 2 SB PRO.Pers.Subst.3.Nom.Pl.*
+                können Voip3p- können NULL NULL NULL NULL 0 -- VFIN.Mod.3.Pl.Pres.Ind dadurch R--
+                dadurch NULL NULL NULL NULL 6 MO PROADV.Dem sehr R-- sehr NULL NULL NULL NULL 5 MO ADV
+                vielseitig R-- vielseitig NULL NULL NULL NULL 6 MO ADJD.Pos
+                eingesetzt Vmp---- einsetzen NULL NULL NULL NULL 7 OC VPP.Full.Psp
+                werden Van----- werden LC.SIM_GROUP LC.FALSE NULL NULL 2 OC VINF.Aux
+                . S . NULL NULL NULL NULL 7 -- SYM.Pun.Sent
+            </s>
+        </p>
+    </document>
+    <document doc_id="2" title="Startseite - Heimwerker-Lexikon">
+        <p>
+            <s>
+                U-förmige A-pnpn U-förmig NULL NULL NULL NULL 2 NK ADJA.Pos.Nom.Pl.Neut
+                Metallelemente Ncnpn Metallelement NULL NULL NULL NULL 0 -- N.Reg.Nom.Pl.Neut
+                z. Sp- z. LC.WF LC.FALSE NULL NULL 5 MO APPRART.Dat.Sg.Neut
+                B. Ncnsd B. LC.SIM_GROUP LC.FALSE NULL NULL 3 NK N.Reg.Dat.Sg.Neut
+                bei Sp- bei NULL NULL NULL NULL 2 MNR APPR
+                Ständerwerk Npnsd Ständerwerk LC.WF LC.FALSE NULL NULL 5 NK N.Name.Dat.Sg.Neut
+                für Sp- für NULL NULL NULL NULL 6 MNR APPR
+                Leichtbauwände Ncfpa Leichtbauwand NULL NULL NULL NULL 7 NK N.Reg.Acc.Pl.Fem
+                oder Cc oder NULL NULL NULL NULL 5 CD CONJ.Coord
+                als Sp- als NULL NULL NULL NULL 9 CJ APPR
+                Verbindungselemente Ncnpa Verbindungselement NULL NULL NULL NULL 10 NK N.Reg.Acc.Pl.Neut
+                . S . NULL NULL NULL NULL 11 -- SYM.Pun.Sent
+            </s>
+        </p>
+    </document>
+    <document doc_id="3" title="Startseite - Heimwerker-Lexikon">
+        <p>
+            <s>
+                Zierscharniere Ncnpn Zierscharnier NULL NULL SUBJ_EMB 3898638 2 SB N.Reg.Nom.Pl.Neut
+                sind Vaip3p- sein NULL NULL NULL NULL 0 -- VFIN.Aux.3.Pl.Pres.Ind
+                Scharniere Ncnpn Scharnier NULL NULL SUBJ_HD,SUBJ_EMB 3898638,3898638 2 SB N.Reg.Nom.Pl.Neut
+                mit Sp- mit NULL NULL NULL NULL 3 MNR APPR
+                gleichzeitigem A-pmsd gleichzeitig NULL NULL NULL NULL 6 NK ADJA.Pos.Dat.Sg.Masc
+                Ziereffekt Ncmsd Ziereffekt NULL NULL NULL NULL 4 NK N.Reg.Dat.Sg.Masc
+                ( S ( NULL NULL NULL NULL 6 -- SYM.Paren.Left
+                Zierkopf Np-sn Zierkopf LC.WF LC.FALSE NULL NULL 3 PAR N.Name.Nom.Sg.*
+                ) S ) NULL NULL NULL NULL 8 -- SYM.Paren.Right
+                . S . NULL NULL NULL NULL 9 -- SYM.Pun.Sent
+            </s>
+            <s>
+                Sie Pp3-pn- sie NULL NULL SUBJ_HD,SUBJ_EMB 3898639,3898639 2 SB PRO.Pers.Subst.3.Nom.Pl.*
+                werden Vaip3p- werden NULL NULL NULL NULL 0 -- VFIN.Aux.3.Pl.Pres.Ind
+                hauptsächlich R-- hauptsächlich NULL NULL NULL NULL 9 MO ADJD.Pos
+                bei Sp- bei NULL NULL APP_HD,APP_EMB 3898640,3898640 9 MO APPR
+                antiken A-pmpd antik NULL NULL APP_EMB 3898640 8 NK ADJA.Pos.Dat.Pl.Masc
+                oder Cc oder NULL NULL APP_EMB 3898640 5 CD CONJ.Coord
+                imitierten A-pmpd imitiert NULL NULL APP_EMB 3898640 6 CJ ADJA.Pos.Dat.Pl.Masc
+                Antikmöbeln Ncmpd Antikmöbel LC.SIM_GROUP LC.FALSE APP_EMB 3898640 4 NK N.Reg.Dat.Pl.Masc
+                verwendet Vmp---- verwenden NULL NULL V_O_A 3898640 2 OC VPP.Full.Psp
+                . S . NULL NULL NULL NULL 9 -- SYM.Pun.Sent
+            </s>
+        </p>
+    </document>
+</subcorpus>
