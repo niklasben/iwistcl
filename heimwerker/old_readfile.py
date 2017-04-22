@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*
+# -*- coding: utf-8 -*-
 
 import re
 
@@ -14,12 +13,6 @@ class HeimwerkerCorpus(object):
 
     def readfile(self):
         """Read the File."""
-        # (1) Wiederholte Satzzeichen
-        satzzeichenList = [
-            re.compile('[\?\!\.]{2,}'),
-            re.compile('\+{2,4}')
-        ]
-
         # (2) Wiederholte Buchstaben:
         buchstabenList = [
             re.compile(
@@ -30,12 +23,7 @@ class HeimwerkerCorpus(object):
             re.compile('.*(r{4,}|l{4,}|m{4,}|n{4,}).*')
         ]
 
-        # (3) Wörter zwischen Sternchen:
-        sternchenList = [
-            re.compile('\*([A-ZÄÖÜ]+|[a-zäöüß]+|([A-ZÄÖÜ][a-zäöüß]+))\*')
-        ]
-
-        # (4) Emoticons und Emojis:
+        # (4) Emoticons und Emojis
         emoList = [
             re.compile('(x|\:|\;|\.)(-|o)?(\(+|\)+|d|p|o|-+|\\|\/)$'),
             re.compile('(\-\_\-|\-\.\-|\.\_\.|[o^][_.-]?[O^]|O[_.]?o|o[_.]o|' +
@@ -117,27 +105,24 @@ class HeimwerkerCorpus(object):
                         pass
                     else:
                         # if re.match('\*', cols[0]):
-                            # print(next(readfile, '')).strip()
-                            # print cols[0] + '\t' + cols[1]
-
-                        # (1) Wiederholte Satzzeichen
-                        if any(satzzeichen.match(cols[0]) for satzzeichen in
-                               satzzeichenList):
-                            pass
+                        #     print(next(readfile, '')).strip()
+                        #     print cols[0] + '\t' + cols[1]
 
                         # (2) Wiederholte Buchstaben
-                        elif any(buchstabe.match(cols[0]) for buchstabe in
-                                 buchstabenList):
+                        if any(buchstabe.match(cols[0]) for buchstabe in
+                               buchstabenList):
                             pass
-
-                        # (3) Wörter zwischen Sternchen
-                        elif any(sternchen.match(cols[0]) for sternchen in
-                                 sternchenList):
-                            print cols[0] + '\t' + cols[1]
 
                         # (4) Emoticons und Emojis
                         elif any(emo.match(cols[0]) for emo in emoList):
                             pass
+
+                            # uebertragCols = cols[0]
+                            # nextline = next(readfile).strip()
+                            # nextcols = nextline.split('\t')
+                            # nextcols = filter(None, nextcols)
+                            # if re.match('(\(|\))', nextcols[0]):
+                            #     print uebertragCols + ' ' + nextcols[0]
 
                         # (5) Kontrahierte Formen und Verkürzungen
                         elif any(kontra.match(cols[0]) for kontra in
