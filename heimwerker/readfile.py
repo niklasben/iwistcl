@@ -105,8 +105,8 @@ class HeimwerkerCorpus(object):
             re.compile('Männe')
         ]
 
-        # with open('bc-testfile.csv', 'r') as readfile:
-        with open('bc.annotated.csv', 'r') as readfile:
+        with open('bc-testfile.csv', 'r') as readfile:
+            # with open('bc.annotated.csv', 'r') as readfile:
             for line in readfile:
                 line = line.replace(' ', '\t')
                 cols = line.split('\t')
@@ -123,12 +123,12 @@ class HeimwerkerCorpus(object):
                         # (1) Wiederholte Satzzeichen
                         if any(satzzeichen.match(cols[0]) for satzzeichen in
                                satzzeichenList):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (2) Wiederholte Buchstaben
                         elif any(buchstabe.match(cols[0]) for buchstabe in
                                  buchstabenList):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (3) Wörter zwischen Sternchen
                         elif any(sternchen.match(cols[0]) for sternchen in
@@ -137,7 +137,7 @@ class HeimwerkerCorpus(object):
 
                         # (4) Emoticons und Emojis
                         elif any(emo.match(cols[0]) for emo in emoList):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (5) Kontrahierte Formen und Verkürzungen
                         elif any(kontra.match(cols[0]) for kontra in
@@ -150,12 +150,12 @@ class HeimwerkerCorpus(object):
                                         '[mM]ein|[dD]enk|[fF]inde|[gG]eh|' +
                                         '[wW]ei)(mse|ste|sste|ßte|ts|ens|' +
                                         'tse)$', cols[0]):
-                                pass
+                                print cols[0] + '\t' + cols[1]
 
                         # (6) Umgangssprache
                         elif any(umgangssprache.match(cols[0]) for
                                  umgangssprache in umgangsList):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         elif re.match('bis$', cols[0]):
                             uebertragCols = cols[0]
@@ -164,7 +164,7 @@ class HeimwerkerCorpus(object):
                             nextcols = filter(None, nextcols)
                             if re.match('(d[ae](nne?|mn(ae|ä)chst)|bald|' +
                                         'morgen|sp(ae|ä)ter)', nextcols[0]):
-                                pass
+                                print cols[0] + '\t' + cols[1]
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('gr(ue|ü)(ss|ß)', cols[0]):
@@ -261,31 +261,31 @@ class HeimwerkerCorpus(object):
 
                         # (8) Anrede bestimmter User in Gruppendiskussionen
                         elif re.match('\@.+', cols[0]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (9) Interjektionen
                         elif re.match('I.*', cols[1]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (10) Partikel
                         elif re.match('Q.*', cols[1]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (11) Adverbien
                         elif re.match('R--', cols[1]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (12) Personalpronomen
                         elif re.match('Pp[12]-.', cols[1]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (13) Possessivpronomen
                         elif re.match('Pp-.', cols[1]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
                         # (14) Reflexivpronomen
                         elif re.match('P[xs][12]-.', cols[1]):
-                            pass
+                            print cols[0] + '\t' + cols[1]
 
 
 HeimwerkerCorpus()
