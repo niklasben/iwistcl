@@ -109,22 +109,26 @@ class HeimwerkerCorpus(object):
         with open('bc-testfile.csv', 'r') as readfile:
             # with open('bc.annotated.csv', 'r') as readfile:
             for line in readfile:
-                line = line.replace(' ', '\t')
-                cols = line.split('\t')
+                if re.match('^\s*<', line):
+                    print('first', line)
+                    # pass
+                else:
+                    line = line.replace(' ', '\t')
+                    cols = line.split('\t')
 
-                cols = filter(None, cols)
-                if len(cols) > 1:
-                    if re.match('<.', cols[0]):
-                        pass
-                    else:
+                    cols = filter(None, cols)
+                    if len(cols) > 1:
+                        # if re.match('<.', cols[0]):
+                        #     print('LALALA', cols[0])
+                        # else:
                         # if re.match('\*', cols[0]):
-                            # print(next(readfile, '')).strip()
-                            # print cols[0] + '\t' + cols[1]
+                                # print(next(readfile, '')).strip()
+                                # print cols[0] + '\t' + cols[1]
 
                         # (1) Wiederholte Satzzeichen
-                        if any(satzzeichen.match(cols[0]) for satzzeichen in
-                               satzzeichenList):
-                            # print '1: ' + cols[0] + '\t' + cols[1]
+                        if any(satzzeichen.match(cols[0]) for satzzeichen
+                                in satzzeichenList):
+                                # print '1: ' + cols[0] + '\t' + cols[1]
                             task1 = '1'
                         else:
                             task1 = '0'
@@ -159,12 +163,13 @@ class HeimwerkerCorpus(object):
                             task5 = '1'
 
                         elif re.match('Vm.+', cols[1]):
-                            if re.match('([bB]i|[wW]ir|[dD]arf|[wW]ill|' +
-                                        '[mM]ag|[bB]rauch|[kK]riegt|[nN]imm|' +
-                                        '([bB]e)?[kK]omm|[kK]önn|[mM]ach|' +
-                                        '[mM]ein|[dD]enk|[fF]inde|[gG]eh|' +
-                                        '[wW]ei)(mse|ste|sste|ßte|ts|ens|' +
-                                        'tse)$', cols[0]):
+                            if re.match(
+                                '([bB]i|[wW]ir|[dD]arf|[wW]ill|' +
+                                '[mM]ag|[bB]rauch|[kK]riegt|[nN]imm|' +
+                                '([bB]e)?[kK]omm|[kK]önn|[mM]ach|' +
+                                '[mM]ein|[dD]enk|[fF]inde|[gG]eh|' +
+                                '[wW]ei)(mse|ste|sste|ßte|ts|ens|' +
+                                    'tse)$', cols[0]):
                                 print '5.2: ' + cols[0] + '\t' + cols[1]
                                 task5 = '1'
                         else:
@@ -182,7 +187,8 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('(d[ae](nne?|mn(ae|ä)chst)|bald|' +
-                                        'morgen|sp(ae|ä)ter)', nextcols[0]):
+                                        'morgen|sp(ae|ä)ter)',
+                                        nextcols[0]):
                                 print cols[0] + '\t' + cols[1]
                                 # print uebertragCols + ' ' + nextcols[0]
 
@@ -327,11 +333,12 @@ class HeimwerkerCorpus(object):
                         else:
                             task14 = '0'
 
-                        print cols[0] + '\t' + cols[1] + '\t' + task1 + '\t' +\
-                            task2 + '\t' + task3 + '\t' + task4 + '\t' +\
-                            task5 + '\t' + task6 + '\t' + task8 + '\t' +\
-                            task9 + '\t' + task10 + '\t' + task11 + '\t' +\
-                            task12 + '\t' + task13 + '\t' + task14 + '\n'
+                        print cols[0] + '\t' + cols[1] + '\t' + task1 +\
+                            '\t' + task2 + '\t' + task3 + '\t' + task4 +\
+                            '\t' + task5 + '\t' + task6 + '\t' + task8 +\
+                            '\t' + task9 + '\t' + task10 + '\t' + task11 +\
+                            '\t' + task12 + '\t' + task13 + '\t' +\
+                            task14 + '\n'
 
 
 HeimwerkerCorpus()
