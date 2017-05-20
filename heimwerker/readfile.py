@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*
 
 import re
+import pprint
 
 
 class HeimwerkerCorpus(object):
@@ -123,26 +124,40 @@ class HeimwerkerCorpus(object):
                         # (1) Wiederholte Satzzeichen
                         if any(satzzeichen.match(cols[0]) for satzzeichen in
                                satzzeichenList):
-                            print cols[0] + '\t' + cols[1]
+                            # print '1: ' + cols[0] + '\t' + cols[1]
+                            task1 = '1'
+                        else:
+                            task1 = '0'
 
                         # (2) Wiederholte Buchstaben
-                        elif any(buchstabe.match(cols[0]) for buchstabe in
-                                 buchstabenList):
-                            print cols[0] + '\t' + cols[1]
+                        if any(buchstabe.match(cols[0]) for buchstabe in
+                               buchstabenList):
+                            # print '2: ' + cols[0] + '\t' + cols[1]
+                            task2 = '1'
+                        else:
+                            task2 = '0'
 
                         # (3) Wörter zwischen Sternchen
-                        elif any(sternchen.match(cols[0]) for sternchen in
-                                 sternchenList):
-                            print cols[0] + '\t' + cols[1]
+                        if any(sternchen.match(cols[0]) for sternchen in
+                               sternchenList):
+                            # print '3: ' + cols[0] + '\t' + cols[1]
+                            task3 = '1'
+                        else:
+                            task3 = '0'
 
                         # (4) Emoticons und Emojis
-                        elif any(emo.match(cols[0]) for emo in emoList):
-                            print cols[0] + '\t' + cols[1]
+                        if any(emo.match(cols[0]) for emo in emoList):
+                            # print '4: ' + cols[0] + '\t' + cols[1]
+                            task4 = '1'
+                        else:
+                            task4 = '0'
 
                         # (5) Kontrahierte Formen und Verkürzungen
-                        elif any(kontra.match(cols[0]) for kontra in
-                                 kontraList):
-                            pass
+                        if any(kontra.match(cols[0]) for kontra in
+                               kontraList):
+                            # print '5.1: ' + cols[0] + '\t' + cols[1]
+                            task5 = '1'
+
                         elif re.match('Vm.+', cols[1]):
                             if re.match('([bB]i|[wW]ir|[dD]arf|[wW]ill|' +
                                         '[mM]ag|[bB]rauch|[kK]riegt|[nN]imm|' +
@@ -150,12 +165,16 @@ class HeimwerkerCorpus(object):
                                         '[mM]ein|[dD]enk|[fF]inde|[gG]eh|' +
                                         '[wW]ei)(mse|ste|sste|ßte|ts|ens|' +
                                         'tse)$', cols[0]):
-                                print cols[0] + '\t' + cols[1]
+                                print '5.2: ' + cols[0] + '\t' + cols[1]
+                                task5 = '1'
+                        else:
+                            task5 = '0'
 
                         # (6) Umgangssprache
-                        elif any(umgangssprache.match(cols[0]) for
-                                 umgangssprache in umgangsList):
-                            print cols[0] + '\t' + cols[1]
+                        if any(umgangssprache.match(cols[0]) for
+                               umgangssprache in umgangsList):
+                            # print '6: ' + cols[0] + '\t' + cols[1]
+                            task6 = '1'
 
                         elif re.match('bis$', cols[0]):
                             uebertragCols = cols[0]
@@ -260,32 +279,59 @@ class HeimwerkerCorpus(object):
                                     #     ' ' + nextnextcols[0]
 
                         # (8) Anrede bestimmter User in Gruppendiskussionen
-                        elif re.match('\@.+', cols[0]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('\@.+', cols[0]):
+                            # print '8: ' + cols[0] + '\t' + cols[1]
+                            task8 = '1'
+                        else:
+                            task8 = '0'
 
                         # (9) Interjektionen
-                        elif re.match('I.*', cols[1]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('I.*', cols[1]):
+                            # print '9: ' + cols[0] + '\t' + cols[1]
+                            task9 = '1'
+                        else:
+                            task9 = '0'
 
                         # (10) Partikel
-                        elif re.match('Q.*', cols[1]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('Q.*', cols[1]):
+                            # print '10: ' + cols[0] + '\t' + cols[1]
+                            task10 = '1'
+                        else:
+                            task10 = '0'
 
                         # (11) Adverbien
-                        elif re.match('R--', cols[1]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('R--', cols[1]):
+                            # print '11: ' + cols[0] + '\t' + cols[1]
+                            task11 = '1'
+                        else:
+                            task11 = '0'
 
                         # (12) Personalpronomen
-                        elif re.match('Pp[12]-.', cols[1]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('Pp[12]-.', cols[1]):
+                            # print '12: ' + cols[0] + '\t' + cols[1]
+                            task12 = '1'
+                        else:
+                            task12 = '0'
 
                         # (13) Possessivpronomen
-                        elif re.match('Pp-.', cols[1]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('Pp-.', cols[1]):
+                            # print '13: ' + cols[0] + '\t' + cols[1]
+                            task13 = '1'
+                        else:
+                            task13 = '0'
 
                         # (14) Reflexivpronomen
-                        elif re.match('P[xs][12]-.', cols[1]):
-                            print cols[0] + '\t' + cols[1]
+                        if re.match('P[xs][12]-.', cols[1]):
+                            # print '14: ' + cols[0] + '\t' + cols[1]
+                            task14 = '1'
+                        else:
+                            task14 = '0'
+
+                        print cols[0] + '\t' + cols[1] + '\t' + task1 + '\t' +\
+                            task2 + '\t' + task3 + '\t' + task4 + '\t' +\
+                            task5 + '\t' + task6 + '\t' + task8 + '\t' +\
+                            task9 + '\t' + task10 + '\t' + task11 + '\t' +\
+                            task12 + '\t' + task13 + '\t' + task14 + '\n'
 
 
 HeimwerkerCorpus()
