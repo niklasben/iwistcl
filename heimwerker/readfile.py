@@ -32,14 +32,20 @@ class HeimwerkerCorpus(object):
         ]
 
         # (3) Wörter zwischen Sternchen:
-        sternchenList = [
-            re.compile('\*([A-ZÄÖÜ]+|[a-zäöüß]+|([A-ZÄÖÜ][a-zäöüß]+))\*')
+        sternchenListKomplett = [
+            re.compile('^\*{1}([A-ZÄÖÜ]+|[a-zäöüß]+|([A-ZÄÖÜ][a-zäöüß]+))\*{1}')
+        ]
+        sternchenListAnfang = [
+            re.compile('\*{1}([A-ZÄÖÜ]+|[a-zäöüß]+|([A-ZÄÖÜ][a-zäöüß]+))\*{0}')
+        ]
+        sternchenListEnde = [
+            re.compile('\*{0}([A-ZÄÖÜ]+|[a-zäöüß]+|([A-ZÄÖÜ][a-zäöüß]+))\*{1}')
         ]
 
         # (4) Emoticons und Emojis:
         emoList = [
-            re.compile('(x|\:|\;|\.)(-|o)?(\(+|\)+|d|p|o|-+|\\|\/)$'),
-            re.compile('(\-\_\-|\-\.\-|\.\_\.|[o^][_.-]?[O^]|O[_.]?o|o[_.]o|' +
+            re.compile('(x|\:|\;|\.)(-|o)?(\s)*(\(+|\)+|d|p|o|-+|\\|\/)$'),
+            re.compile('(\-\_\-|\-\.\-|\.\_\.|[o\^][_.-]?[O\^]|O[_.]?o|o[_.]o|' +
                        'O[_.]O)$')
         ]
 
@@ -61,7 +67,7 @@ class HeimwerkerCorpus(object):
 
         # (6) Umgangssprache:
         umgangsList = [
-            re.compile('[H|h]all[o|ö|i](le|chen)$'),
+            re.compile('(H|h)all(o|ö|i)(le|chen)$'),
             re.compile('Gr(u|ue|ü)(s|ss|sz|ß)(e|en|chen|le)$'),
             re.compile('ciao$'),
             re.compile('h(i|ey)$'),
@@ -70,7 +76,7 @@ class HeimwerkerCorpus(object):
             re.compile('moin(sen|moin)?$'),
             re.compile('servus$'),
             re.compile('tsch(au|ue|ü|ö)(ss|ß)?$'),
-            re.compile('D|d]ing(s|er|erchen|sbums|ens|da).*'),
+            re.compile('(D|d)ing(s|er|erchen|sbums|ens|da).*'),
             re.compile('Zeugs|blöd|blöde.*|doof| doofe.*'),
             re.compile('.*idiot.*'),
             re.compile('.*bl(oe|ö)d.*'),
@@ -106,11 +112,14 @@ class HeimwerkerCorpus(object):
             re.compile('Männe')
         ]
 
-        with open('bc-testfile.csv', 'r') as readfile:
-            # with open('bc.annotated.csv', 'r') as readfile:
+        # with open('bc-testfile.csv', 'r') as readfile,\
+        #         open('testwrite.csv', 'w') as writefile:
+        with open('bc.annotated.csv', 'r') as readfile,\
+                open('bc.processed.csv', 'w') as writefile:
             for line in readfile:
                 if re.match('^\s*<', line):
-                    print('first', line)
+                    writefile.write(line)
+                    # print('first', line)
                     # pass
                 else:
                     line = line.replace(' ', '\t')
@@ -142,10 +151,22 @@ class HeimwerkerCorpus(object):
                             task2 = '0'
 
                         # (3) Wörter zwischen Sternchen
-                        if any(sternchen.match(cols[0]) for sternchen in
-                               sternchenList):
+                        if re.match('\*{1}(E|e)(D|d)(I|i)(T|t)\*?', cols[0]):
+                            task3 = '0EDIT'
+                            print('ding', cols[0], 'EDIT')
+                        elif any(sternchen.match(cols[0]) for sternchen in
+                                 sternchenListKomplett):
                             # print '3: ' + cols[0] + '\t' + cols[1]
-                            task3 = '1'
+                            task3 = '1V'
+                            # print('ding', cols[0], task3)
+                        elif any(sternchen.match(cols[0]) for sternchen in
+                                 sternchenListAnfang):
+                            task3 = '1A'
+                            # print('ding', cols[0], task3)
+                        elif any(sternchen.match(cols[0]) for sternchen in
+                                 sternchenListEnde):
+                            task3 = '1E'
+                            # print('ding', cols[0], task3)
                         else:
                             task3 = '0'
 
@@ -153,6 +174,7 @@ class HeimwerkerCorpus(object):
                         if any(emo.match(cols[0]) for emo in emoList):
                             # print '4: ' + cols[0] + '\t' + cols[1]
                             task4 = '1'
+                            # print('ding', cols[0], task4)
                         else:
                             task4 = '0'
 
@@ -170,7 +192,7 @@ class HeimwerkerCorpus(object):
                                 '[mM]ein|[dD]enk|[fF]inde|[gG]eh|' +
                                 '[wW]ei)(mse|ste|sste|ßte|ts|ens|' +
                                     'tse)$', cols[0]):
-                                print '5.2: ' + cols[0] + '\t' + cols[1]
+                                # print '5.2: ' + cols[0] + '\t' + cols[1]
                                 task5 = '1'
                         else:
                             task5 = '0'
@@ -189,7 +211,10 @@ class HeimwerkerCorpus(object):
                             if re.match('(d[ae](nne?|mn(ae|ä)chst)|bald|' +
                                         'morgen|sp(ae|ä)ter)',
                                         nextcols[0]):
-                                print cols[0] + '\t' + cols[1]
+                                task6 = '1'
+                                # pass
+                                # print '6.1: ' + cols[0] + '\t' + cols[1]
+                                # print cols[0] + '\t' + cols[1]
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('gr(ue|ü)(ss|ß)', cols[0]):
@@ -198,7 +223,9 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('gott$', nextcols[0]):
-                                pass
+                                task6 = '1'
+                                # print '6.2: ' + cols[0] + '\t' + cols[1]
+                                # pass
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('macht(\')?s', cols[0]):
@@ -207,8 +234,9 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('gut$', nextcols[0]):
+                                task6 = '1'
                                 # pass
-                                print uebertragCols + ' ' + nextcols[0]
+                                # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('oder$', cols[0]):
                             uebertragCols = cols[0]
@@ -222,7 +250,8 @@ class HeimwerkerCorpus(object):
                                 nextnextcols = nextnextline.split('\t')
                                 nextnextcols = filter(None, nextnextcols)
                                 if re.match('nicht$', nextnextcols[0]):
-                                    pass
+                                    task6 = '1'
+                                    # pass
                                     # print uebertragCols + ' ' +\
                                     #     uebertragNextcols + \
                                     #     ' ' + nextnextcols[0]
@@ -237,7 +266,8 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('mal$', nextcols[0]):
-                                pass
+                                task6 = '1'
+                                # pass
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('unter(\')?m$', cols[0]):
@@ -246,7 +276,8 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('strich$', nextcols[0]):
-                                pass
+                                task6 = '1'
+                                # pass
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('so$', cols[0]):
@@ -255,7 +286,8 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('ziemlich$', nextcols[0]):
-                                pass
+                                task6 = '1'
+                                # pass
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('mir$', cols[0]):
@@ -264,7 +296,8 @@ class HeimwerkerCorpus(object):
                             nextcols = nextline.split('\t')
                             nextcols = filter(None, nextcols)
                             if re.match('egal$', nextcols[0]):
-                                pass
+                                task6 = '1'
+                                # pass
                                 # print uebertragCols + ' ' + nextcols[0]
 
                         elif re.match('wie$', cols[0]):
@@ -279,15 +312,29 @@ class HeimwerkerCorpus(object):
                                 nextnextcols = nextnextline.split('\t')
                                 nextnextcols = filter(None, nextnextcols)
                                 if re.match('immer$', nextnextcols[0]):
-                                    pass
+                                    task6 = '1'
+                                    # print('6.nnnn', cols[0], nextcols[
+                                    #       0], nextnextcols[0])
+                                    # pass
                                     # print uebertragCols + ' ' +\
                                     #     uebertragNextcols + \
                                     #     ' ' + nextnextcols[0]
+                        else:
+                            task6 = '0'
+
+                        # (7) Sätze nur mit Klein-/Großbuchstaben
+                        if re.match('^[A-ZÄÖÜß\d]+$', cols[0]):
+                            task7 = '1G'
+                        elif re.match('^[a-zäöüß\d]+$', cols[0]):
+                            task7 = '1K'
+                        else:
+                            task7 = '0'
 
                         # (8) Anrede bestimmter User in Gruppendiskussionen
-                        if re.match('\@.+', cols[0]):
+                        if re.match('@.*', cols[0]):
                             # print '8: ' + cols[0] + '\t' + cols[1]
                             task8 = '1'
+                            # print('8: ', cols[0])
                         else:
                             task8 = '0'
 
@@ -333,12 +380,13 @@ class HeimwerkerCorpus(object):
                         else:
                             task14 = '0'
 
-                        print cols[0] + '\t' + cols[1] + '\t' + task1 +\
-                            '\t' + task2 + '\t' + task3 + '\t' + task4 +\
-                            '\t' + task5 + '\t' + task6 + '\t' + task8 +\
-                            '\t' + task9 + '\t' + task10 + '\t' + task11 +\
-                            '\t' + task12 + '\t' + task13 + '\t' +\
-                            task14 + '\n'
+                        writefile.write(cols[0] + '\t' + cols[1] + '\t' +
+                                        task1 + '\t' + task2 + '\t' + task3
+                                        + '\t' + task4 + '\t' + task5 + '\t'
+                                        + task6 + '\t' + task7 + '\t' + task8 +
+                                        '\t' + task9 + '\t' + task10 + '\t' +
+                                        task11 + '\t' + task12 + '\t' +
+                                        task13 + '\t' + task14 + '\n')
 
 
 HeimwerkerCorpus()
