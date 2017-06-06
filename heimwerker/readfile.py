@@ -153,7 +153,7 @@ class HeimwerkerCorpus(object):
                         # (3) Wörter zwischen Sternchen
                         if re.match('\*{1}(E|e)(D|d)(I|i)(T|t)\*?', cols[0]):
                             task3 = '0EDIT'
-                            print('ding', cols[0], 'EDIT')
+                            # print('ding', cols[0], 'EDIT')
                         elif any(sternchen.match(cols[0]) for sternchen in
                                  sternchenListKomplett):
                             # print '3: ' + cols[0] + '\t' + cols[1]

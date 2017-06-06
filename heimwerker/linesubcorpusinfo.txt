@@ -1,0 +1,56 @@
+1	<subcorpus id="20" authors="users" name="ICA-Lexikon" size="303" >
+
+33407	<subcorpus id="21" authors="experts" name="ICA-wiki" size="1259" >
+
+544238	<subcorpus id="22" authors="unknown" name="ICA-unknown" size="2988" >
+
+1915367	<subcorpus id="23" authors="users" name="ICA-Video" size="13" >
+
+1918362	<subcorpus id="1" authors="experts" name="wiki" size="1238" >
+
+2404259	<subcorpus id="3" authors="users" name="12docom_diy-forum" size="9774" >
+
+29082757	<subcorpus id="2" authors="users" name="project" size="6259" >
+
+31549700	<subcorpus id="5" authors="experts" name="MarketingTexts_2013-08-29" size="186" >
+
+31589373	<subcorpus id="4" authors="experts" name="Expertenprojekte" size="45" >
+
+31652021	<subcorpus id="7" authors="experts" name="bosch_do_it_FAQs" size="83" >
+
+31658108	<subcorpus id="6" authors="experts" name="bosch_do_it_tips_and_tricks_reduced" size="53" >
+
+31673056	<subcorpus id="9" authors="experts" name="Bosch2012_Heimwerkerbuch Ulmer" size="1" >
+
+31735999	<subcorpus id="8" authors="experts" name="bosch_do_it_encyclopedia" size="143" >
+
+31743264	<subcorpus id="11" authors="users" name="ICA-Forenbeiträge" size="19006" >
+
+40538909	<subcorpus id="10" authors="experts" name="tool_manuals" size="19" >
+
+40616956	<subcorpus id="13" authors="users" name="ICA-Foren-Artikel" size="637" >
+
+40943099	<subcorpus id="12" authors="users" name="ICA-Tests" size="988" >
+
+41254914	<subcorpus id="15" authors="experts" name="ICA-Bautagebücher" size="84" >
+
+41283274	<subcorpus id="14" authors="users" name="ICA-project" size="6428" >
+
+43928504	<subcorpus id="17" authors="experts" name="ICA-faq" size="1665" >
+
+44158214	<subcorpus id="16" authors="experts" name="ICA-Artikel" size="8556" >
+
+47627840	<subcorpus id="19" authors="users" name="ICA-tnt" size="49" >
+
+47644258	<subcorpus id="18" authors="users" name="ICA-Userprojekte" size="911" >
+
+
+No. of Lines: 47848267
+Divided by 4: 11962066
+Divided by 3: 15949422
+Divided by 2: 23924133
+---------------------
+No. 1: 1
+No. 2: 11962066	15949422	23924133
+No. 3: 23924132	31898844
+No. 4: 35886198

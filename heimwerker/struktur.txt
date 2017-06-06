@@ -1,0 +1,34 @@
+Die Struktur der Datei sieht ausgegeben in etwa so aus, wie auf dem Bild
+im Anhang. Die einzelnen Teile sind tab-separated.
+
+Eine 0 heißt immer, dass dies für das vorliegende Wort nicht stimmt,
+eine 1 entsprechend das es der Suche entspricht.
+
+Die Reihenfolge der Werte:
+
+(1) Wiederholte Satzzeichen
+(2) Wiederholte Buchstaben
+(3) Wörter zwischen Sternchen
+-> 1V = Wort vollständig in Sternchen
+-> 1A = Wort beginnt mit Sternchen
+-> 1E = Wort endet mit Sternchen
+-> 0Edit = Scheint mir aufgrund des Vorkommens kein relevanter
+Treffer, sondern der Beginn eines editierten Textteils,
+dargestellt im Fettdruck. Die Frequenz editierter Texte könntest
+du daraus aber evtl. ableiten, wenn relevant.
+(4) Emoticons und Emojis
+(5) Kontrahierte Formen und Verkürzungen
+(6) Umgangssprache
+(7) Sätze nur mit Klein-/Großbuchstaben
+-> Da es rekursiv über einen Satz nicht sauber ging, folgende
+Notierung bei Wörtern:
+-> 1G = Wort vollständig in Großbuchstaben
+-> 1K = Wort vollständig in Kleinbuchstaben
+Letzteres betrifft natürlich immer alle Nicht-Nomen.
+(8) Anrede bestimmter User in Gruppendiskussionen
+(9) Interjektionen
+(10) Partikel
+(11) Adverbien
+(12) Personalpronomen
+(13) Possessivpronomen
+(14) Reflexivpronomen
